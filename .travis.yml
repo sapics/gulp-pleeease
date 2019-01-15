@@ -1,7 +1,10 @@
 language: node_js
 
 node_js:
-  - '4.0'
+  - 4
+  - 6
+  - 8
+  - 10
 
 notifications:
   email: false
