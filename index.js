@@ -1,7 +1,7 @@
 'use strict';
 
 var path           = require('path');
-var gutil          = require('gulp-util');
+var PluginError    = require('plugin-error');
 var through        = require('through2');
 var pleeease       = require('pleeease');
 var applySourceMap = require('vinyl-sourcemaps-apply');
@@ -20,7 +20,7 @@ module.exports = function (opts) {
     }
 
     if (file.isStream()) {
-      cb(new gutil.PluginError(PLUGIN_NAME, 'Streaming not supported'));
+      cb(new PluginError(PLUGIN_NAME, 'Streaming not supported'));
       return;
     }
 
@@ -53,8 +53,8 @@ module.exports = function (opts) {
     }
 
     function error (err) {
-      cb(new gutil.PluginError(PLUGIN_NAME, err, {fileName: file.path}));
-      this.emit('error', new gutil.PluginError(PLUGIN_NAME, err));
+      cb(new PluginError(PLUGIN_NAME, err, {fileName: file.path}));
+      this.emit('error', new PluginError(PLUGIN_NAME, err));
     }
   }
 
